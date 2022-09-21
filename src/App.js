@@ -1,23 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+
+import { useSelector,useDispatch } from 'react-redux'
+import { increment ,decrement , multiple , divide } from './features/counter/counterSlice'
+import './couter.css'
 
 function App() {
+  const count = useSelector((state) => state.counter.value)
+  const dispatch = useDispatch()
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div>
+      <div>
+        <button
+          aria-label="Increment value"
+          onClick={() => dispatch(increment())}
         >
-          Learn React
-        </a>
-      </header>
+          <span className='font-size'>+</span>
+        </button>
+        <span className='font-size'>{count}</span>
+
+        <button
+          aria-label="Decrement value"
+          onClick={() => dispatch(decrement())}
+        >
+          
+          <span className='font-size'>-</span>
+        </button>
+
+        <button
+          aria-label="Multiple value"
+          onClick={() => dispatch(multiple())}
+        >
+           
+           <span className='font-size'>2 *</span>
+        </button>
+
+        <button
+          aria-label="Divide value"
+          onClick={() => dispatch(divide())}
+        >
+           
+           <span className='font-size'>2 /</span>
+        </button>
+
+
+      </div>
+      
+
+
+
     </div>
   );
 }
